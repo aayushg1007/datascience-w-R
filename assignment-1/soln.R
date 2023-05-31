@@ -158,19 +158,14 @@ for(i in 1:1000)
 {
   results[i] <- MontyHall()
 }
-ans <- sum(results)/1000
+probab <- sum(results)/1000
 
 
 #e
 html3 = read_html("https://editorial.rottentomatoes.com/guide/best-netflix-movies-to-watch-right-now/")
-z=html3%>%html_table()
 rank=html3%>%html_elements(".countdown-index")%>%html_text()
 mname=html3%>%html_elements(".article_movie_title a")%>%html_text()
 tsc=html3%>%html_elements(".tMeterScore")%>%html_text()
 yr=html3%>%html_elements(".start-year")%>%html_text()
 
 data3=data.frame(Ranking=rank, Movie=mname,Tomato_Score=tsc,Year=yr)
-
-
-
-  
