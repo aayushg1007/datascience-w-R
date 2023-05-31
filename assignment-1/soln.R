@@ -6,7 +6,7 @@ library(rvest)
 html <- read_html("https://www.moneyworks4me.com/best-index/nse-stocks/top-nifty50-companies-list/")
 tab = html%>%html_table()
 data=data.frame(tab[1])
-data=data[,-1]
+data=data[,-c(1,14,15)]
 
 #b1
 html2=read_html("https://www.moneyworks4me.com/indianstocks/large-cap/fmcg/consumer-food/britannia-inds/company-info")
