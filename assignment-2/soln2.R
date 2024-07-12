@@ -40,6 +40,35 @@ title = html%>%html_elements(".s-post-summary--content-title a")%>%html_text()
 ans = html%>%html_elements(".s-post-summary--stats-item-number")%>%html_text()
 votes = ans[seq_along(ans) %%3 == 1]
 nans = ans[seq_along(ans) %%3 == 2]
+
+#e
+tablet = function(n = 100) {
+  days = 0  # Initialize days counter
+  
+  while (n > 0) {
+    # Randomly pull one tablet from the bottle
+    pulled_tablet = sample(c("whole", "half"), 1, prob = c(num_whole_tablets, 0.5))
+    
+    if (pulled_tablet == "half") {
+      # If pulled tablet is half, we stop the simulation
+      days = days + 1
+      break
+    } else {
+      # If pulled tablet is whole, cut it in half and put back in the bottle
+      n = n - 1
+    }
+    
+    # Increment days counter
+    days = days + 1
+  }
+  
+  return(days)
+}
+d = {}
+for(i in 1:1000){
+  d[i]=tablet()
+}
+mean(d)
 views = ans[seq_along(ans) %%3 == 0]
 data=data.frame(Title=title, Views=views,Answers=nans,Votes=votes)
 
