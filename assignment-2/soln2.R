@@ -1,6 +1,7 @@
 library(imager)
 library(tidyverse)
 library(rvest)
+
 #b
 flip = function(a) {
   mat = as.array(a[,,1,])
@@ -16,6 +17,21 @@ flip = function(a) {
   
 }
 
+#c
+d = data.frame(ships)
+
+ggplot(data=d, aes(x=service, y=incidents, color=type)) + 
+  geom_point(size=2, shape=19) +
+  labs(title="Number of Services by Ship Type", x="services", y="incidents")
+
+accidents_summary <- d %>% 
+  group_by(type) %>% 
+  summarise(total_accidents = sum(incidents))
+
+ggplot(data = accidents_summary, aes(x = type, y = total_accidents)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(title = "Total Accidents by Ship Type", x = "Ship Type", y = "Total Accidents") +
+  theme_minimal()
 #d
 
 html= read_html("https://stats.stackexchange.com/questions?tab=Votes")
