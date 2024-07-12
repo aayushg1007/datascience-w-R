@@ -2,6 +2,13 @@ library(imager)
 library(tidyverse)
 library(rvest)
 
+#a
+d=data.frame(iris)
+ggplot(data=d, aes(x=Sepal.Length, y=Petal.Length, color=Species)) + 
+  geom_point(size=2, shape=19) +
+  labs(x="Sepal.Length", y="Petal.Length")
+
+
 #b
 flip = function(a) {
   mat = as.array(a[,,1,])
